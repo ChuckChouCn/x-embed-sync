@@ -1,0 +1,10 @@
+{
+	"id": "x-embed-sync",
+	"name": "X/Twitter 推文嵌入",
+	"version": "1.2.0",
+	"minAppVersion": "0.15.0",
+	"description": "粘贴推文链接自动转成 Markdown 嵌入笔记，并实时同步点赞/转发/浏览等互动数据。",
+	"author": "ChuckChouCn",
+	"authorUrl": "https://github.com/ChuckChouCn",
+	"isDesktopOnly": false
+}

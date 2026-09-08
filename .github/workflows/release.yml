@@ -1,0 +1,41 @@
+name: Release
+
+# NOTE: This is an enhanced fork that ships a pre-built `main.js` (the
+# matching TypeScript source is not published). The build step is
+# intentionally removed so the committed bundle is released as-is —
+# rebuilding from `main.ts` would overwrite the enhanced `main.js`.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            main.js
+            manifest.json
+            styles.css
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            main.js
+            manifest.json
+            styles.css
+          fail_on_unmatched_files: true
+          generate_release_notes: true
